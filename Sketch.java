@@ -10,13 +10,13 @@ public class Sketch extends PApplet {
   // Variables
   boolean leftPressed;
   boolean rightPressed;
-  int intHouseX;
-  int intHouseY;
-  int intScale;
+  float fltHouseX = 500;
+  float fltHouseY = 210;
+  float fltScale = 247;
   
   public void settings() {
 	// put your size call here
-    size(800, 800);
+    size(600, 600);
   }
 
   /** 
@@ -31,7 +31,10 @@ public class Sketch extends PApplet {
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw(){
-
+    
+    fill(0, 0, 0);
+    rect(fltHouseX, fltHouseY+(fltScale/8), (fltScale/2), (fltScale/2));
+    
     if(keyPressed){
       if(key == 'q'){
         background(0, 0, 0);
@@ -47,19 +50,12 @@ public class Sketch extends PApplet {
       }
     }
 
-    if(mousePressed){
-    // body of house
-    fill(0, 0, 0);
-    rect(intHouseX, intHouseY+(intScale/8), (intScale/2), (intScale/2));
-
-    // roof
-    fill(0, 255, 0);
-    triangle(intHouseX, intHouseY+(intScale/8), intHouseX+(intScale/4), intHouseY, intHouseX+(intScale/2), intHouseY+(intScale/8));
-
-    // door
-    fill(170, 80, 0);
-    rect(intHouseX+(intScale/4), intHouseY+((intScale/4)+(intScale/8)), (intScale/8), (intScale/4));
+    if(rightPressed == true){
+      fltHouseX++;
   }
+    if(leftPressed == true){
+      fltHouseX--;
+    }
  } 
 
     
@@ -88,9 +84,14 @@ public class Sketch extends PApplet {
     }
   }
 
-// Detects mouse pressed
+  // Detects mouse pressed
   public void mousePressed(){
     fill(255, 255, 255);
     ellipse(mouseX, mouseY, 50, 50);
   }
+
+  // Detects mouse dragged
+  public void mouseDragged(){
+   rect(mouseX, mouseY, 10, 10);
+ }
 }
